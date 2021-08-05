@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Set IP and DNS</title>
+        <link rel="stylesheet" href="../static/main.css" type="text/css">
+
+    </head>
+    <body>
+        <section class="hero">
+            <div class="hero-body">
+            <h1 class="title">Set IP and DNS</h1>
+            {% with messages = get_flashed_messages() %} {% if messages %}
+        <div
+        class="notification"
+        
+        >
+        
+            {% for message in messages %}
+            <h3>{{ message }}</h3>
+            {% endfor %}
+        
+        {% endif %} {% endwith %}
+        </div>
+        </section>
+        
+
+        </div>
+        <div class="container" >
+            
+            <form action="{{url_for('success')}}" method="POST">
+                <label>Select interface</label><br><br>
+                <div class=".radioLeft" style="text-align:justify; margin-left: 37%; ">
+                {%for key,val in devs.items()%}
+                <div style="padding: 5px;">
+                    <input
+                        type="radio"
+                        
+                        value="{{key}}"
+                        name="interface"
+                        required
+                        style="text-align: left;"
+                        />
+                        <label class="radio"> 
+                            {{key}}  Current IP: {{val[0]}}   Netmask: {{val[1]}}
+                        </label>
+                        <br>
+                    </div>
+                {%endfor%}
+            </div>
+                <br><br>
+                <div class="field">
+                    <label class="label" style="margin-top: 20px;">New IP address</label>
+                    <div class="control">
+                      <input class="input" type="text" placeholder="IP Address" name="newIP" autocomplete="off">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">DNS</label>
+                    <div class="control">
+                      <input class="input" type="text" placeholder="DNS" name="newDNS" autocomplete="off">
+                    </div>
+                </div>
+                <button class = "button" type="submit">Set</button>
+            </form>
+        </div>
+    </body>
+</html>
